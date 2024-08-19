@@ -125,3 +125,86 @@
 9. Key Takeaways:
     • Binary search is an essential algorithm for efficiently finding elements in assorted arrays
     • Understanding its preconditions (sorted data and index access) and implementation is crucial for optimising search operations for software development
+
+
+# Intro to Trees
+
+1. What is a Tree?
+    • A tree is a type of graph that is structured in a heirarchical manner
+    • It consists of nodes (elements) and edges (connections between nodes)
+    • A tree is a connected acyclic graph, meaning there are no cycles
+
+2. Characteristics of Trees:
+    • Root: the topmost node in a tree. the only node without a parent
+    • Children: Nodes that descend from another node
+    • Leaf: A node with no children
+    • Internal node: a node that has at least one child
+    • Path: a sequence of nodes connected by edges
+    • Subtree: a tree formed from any node and its descendants
+
+3. Trees vs. Non-tree Graphs
+    • Trees have no cycles
+    • Each node in a tree has exactly one parent (except for the root)
+    • A graph that contains a node with multiple parents or cycles is not a tree
+
+4. Binary Trees:
+    • A binary tree is a type of tree where each node has at most two children
+    • Special cases of binary trees:
+        - Full binary tree: every node has 0 or 2 children
+        - Complete binary tree: all levels are fully filled except possibly the last, which is filled from left to right
+        - Perfect binary tree: all internal nodes have two children, and all leaves are at the same level
+
+5. Coding a Binary Tree (object-oriented approach):
+    • Represent each node as an instance of a `TreeNode` class
+    • A `TreeNode` typically has:
+        - `val`: the value stored in the node
+        - `left`: reference to the left child
+        - `right`: reference to the right child
+
+    ```js
+    class TreeNode {
+        constructor(val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    // creating nodes
+    let a = new TreeNode('a');
+    let b = new TreeNode('b');
+    let c = new TreeNode('c');
+    let d = new TreeNode('d');
+    let e = new TreeNode('e');
+    let f = new TreeNode('f');
+
+    // building the tree
+    a.left = b;
+    a.right = c;
+    b.left = d;
+    b.right = e;
+    c.right = f;
+    ```
+
+    The tree structure would visually look like this:
+    ```js
+    a
+   / \
+  b   c
+ / \   \
+d   e   f
+
+    ```
+
+6. Basic Terminology Review:
+    • Tree: A graph with no cycles
+    • Binary Tree: a tree where each node has at most two children
+    • Root: the topmost node, the starting point of the tree
+    • Leaf: a node with no children
+    • Internal Node: a node that has one or more children
+    • Path: a sequence of nodes connected by edges in the tree
+
+7. Key Takeaways:
+    • Trees are an important subclass of graphs, used widely in various algorithms and data structures
+    • Understanding binary trees is crucial since they form the basics for more complex structures like binary search trees, heaps, and more
+    • The root node is often used to represent the entire tree in algorithms
