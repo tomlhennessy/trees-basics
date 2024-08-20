@@ -187,14 +187,14 @@
     ```
 
     The tree structure would visually look like this:
-    ```js
+```js
     a
    / \
   b   c
  / \   \
 d   e   f
 
-    ```
+```
 
 6. Basic Terminology Review:
     • Tree: A graph with no cycles
@@ -208,3 +208,95 @@ d   e   f
     • Trees are an important subclass of graphs, used widely in various algorithms and data structures
     • Understanding binary trees is crucial since they form the basics for more complex structures like binary search trees, heaps, and more
     • The root node is often used to represent the entire tree in algorithms
+
+
+# Tree Traversal Overview
+
+Tree Traversal: the process of visiting or evaluating every node in a tree. There are various methods of tree traversal, each with its own advantages depending on the specific task.
+
+* Key Terminology
+    • Node: contains a value and pointers to other nodes
+    • Edge: a pointer from one node to another
+    • Root Node: the top node in a tree
+    • Parent/Child Node: a parent node points to child nodes
+    • Subtree: a tree that is a child of another node
+    • Branch Node: a node with at least one child
+    • Leaf Node: a node with no children
+    • Level: number of edges between a node and the root
+    • Height: number of edges from the root to the deepest leaf
+
+* Types of Tree Traversals
+    1. Depth-First Traversal (DFT):
+        • Pre-order: Visit the root, then the left subtree, then, the right subtree
+            • Example: 4, 2, 1, 3, 6, 5, 7
+```js
+     4
+   /   \
+  2     6
+ / \   / \
+1   3 5   7
+
+```
+
+        • In-order: visit the left subtree, then the root, then the right subtree
+            • Example: 1, 2, 3, 4, 5, 6, 7
+
+        • Post-order: visit the left subtree, then the right subtree, then the root
+            • Example: 1, 3, 2, 5, 7, 6, 4
+
+    2. Breadth-First Traversal (BFT):
+        • Traverse each level of the tree from left to right before moving to the next level
+        • Example: 4, 2, 6, 1, 3, 5, 7
+
+
+* Implementation Techniques
+
+    1. Recursive Depth-First Search (DFS):
+        • Used to explore as deep as possible along each branch before backtracking
+        • Example for binary tree search:
+
+        ```js
+        function binaryTreeSearch(root, target) {
+            if (root === null) return false;
+            if (root.value === target) return true;
+            return binaryTreeSearch(root.left, target) || binaryTreeSearch(root.right, target)
+        }
+        ```
+
+    2. Iterative Depth-First Traversal with a Stack:
+        • Use a stack to simulate recursion
+        • Example:
+
+        ```js
+        function depthFirstTraversal(root) {
+            const stack = [];
+            stack.push(root);
+            while (stack.length > 0) {
+                let node = stack.pop();
+                console.log(node.value);
+                stack.push(node.right);
+                stack.push(node.left);
+            }
+        }
+        ```
+
+    3. Iterative Breadth-First Traversal with a Queue
+        • Use a queue to explore nodes level by level
+        • Example:
+        ```js
+        function breadthFirstTraversal(root) {
+            const queue = [];
+            queue.push(root);
+            while (queue.length > 0) {
+                let node = queue.shift();
+                console.log(node.value);
+                if (node.left) queue.push(node.left);
+                if (node.right) queue.push(node.right);
+            }
+        }
+        ```
+
+* Summary
+    • Pre-order, in-order, post-order: these are all depth-first traversals used for binary trees, differing only in the order in which nodes are visited
+    • Breadth-first Traversal: visits nodes level by level, making it different from depth-first methods
+    • Implementation: depth-first can be implemented both recursively and iteratively (with a stack), while breadth-first typically uses a queue
