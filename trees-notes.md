@@ -300,3 +300,85 @@ Tree Traversal: the process of visiting or evaluating every node in a tree. Ther
     • Pre-order, in-order, post-order: these are all depth-first traversals used for binary trees, differing only in the order in which nodes are visited
     • Breadth-first Traversal: visits nodes level by level, making it different from depth-first methods
     • Implementation: depth-first can be implemented both recursively and iteratively (with a stack), while breadth-first typically uses a queue
+
+
+
+# Binary Search Trees (BST)
+
+Binary Search Trees (BST): a node-based data structure where each node has at most two children, referred to as the left and right child. The key property of BSTs is that the left subtree of a node contains only nodes with values less than the node's value, and the right subtree only contains nodes with values greater than the node's value
+
+* Key Terminology
+    • Node: a component that contains a value and pointers to left and right children
+    • Edge: a pointer connecting nodes
+    • Root Node: the top node of the tree
+    • Parent/Child Node: a parent node has pointers to child nodes
+    • Subtree: a tree formed from a node and its descendants
+    • Leaf Node: a node with no children
+    • height: number of edges from the root to the deepest leaf
+
+* Properties of a Binary Search Tree
+    • BST Property: for any node, all nodes in the left subtree have values less than the node, and all nodes in the right subtree have values greater
+    • Handling Duplicates: typically, duplicates can be:
+        - Discarded (like a set)
+        - Placed to the left
+        - Placed to the right (most common)
+
+* BST vs. Regular Binary Tree
+    • Binary Tree: any tree structure where each node has at most two children
+    • BST: a binary tree that satisfies the binary search property (left < node < right)
+    • Efficiency: searching in a BST is more efficient ('O(log n)') compared to a regular binary tree, which might require `O(n)` time if not structured
+
+* Searching a Binary Search Tree
+    • Recursive Approach:
+    ```js
+    function searchBST(root, target) {
+        if (root === null) return false;
+        if (target === root.value) return true;
+        if (target < root.value) return searchBST(root.left, target);
+        return searchBST(root.right, target);
+    }
+    ```
+
+    • Iterative Approach:
+    ```js
+    function searchBST(root, target) {
+        let currentNode = root;
+        while (currentNode !== null) {
+            if (target === currentNode.value) return true;
+            if (target < currentNode.value) currentNode = currentNode.left;
+            else currentNode = currentNode.right;
+        }
+        return false;
+    }
+    ```
+    • Time Complexity: in a balanced BST, searching is `O(log n)`
+
+
+* Insertion in a BST
+    • Process:
+        1. Start at the root
+        2. Recursively move left if value is smaller, right if larger
+        3. Insert the new node when an empty spot is found
+
+* Deletion in a BST
+    • Cases:
+        1. No Children: simply remove the node
+        2. One Child: replace the node with its child
+        3. Two Children: Replace the node with either the right-most node of the left subtree or the left-most node of the right subtree
+
+
+* Time Complexity of BST Operations
+    • Balanced BST:
+        - Search, insert, delete: `O(log n)`
+    • Unbalanced BST:
+        - In the worst case (like a linked list), these operations degrade to `O(n)`
+
+* Unbalanced BSTs
+    • Unbalanced Trees: occur when nodes are inserted in such a way that the tree becomes a straight line, resembling a linked list
+    • Impact: this leads to inefficient operations with `O(n)` time complexity
+    • Balanced Trees: aim to keep the height close to `log n` for optimal efficiency
+
+* What to Understand
+    • Binary Search Trees: understand the structure, properties, and operations
+    • Efficiency: balanced BSTs are efficient (`O(log n)`), while unbalanced trees can degrade to `O(n)`
+    • Advanced Concepts: for guaranteed balance and efficiency, explore self-balancing trees like AVL or Red-Black trees, or B-trees for database indexing
